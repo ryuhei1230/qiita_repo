@@ -4,7 +4,13 @@ import numpy as np
 import argparse
 
 
-def main(args):
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-x', '--x_init_location', default=9, type=int)
+    parser.add_argument('-y', '--y_init_location', default=9, type=int)
+    parser.add_argument('-l', '--learning_rate', default=0.01, type=float)
+    parser.add_argument('-m', '--min_diff', default=0.01, type=float)
+    args = parser.parse_args()
     fig = draw_contour()
     location = np.array((args.x_init_location, args.y_init_location))
     animation_gradient = \
@@ -55,10 +61,5 @@ class Animation_gradient:
         self.location = self.new_location
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument('-x', '--x_init_location', default=9, type=int)
-parser.add_argument('-y', '--y_init_location', default=9, type=int)
-parser.add_argument('-l', '--learning_rate', default=0.01, type=float)
-parser.add_argument('-m', '--min_diff', default=0.01, type=float)   # 必須の引数を
-args = parser.parse_args()
-main(args)
+if __name__ == '__main__':
+    main()
